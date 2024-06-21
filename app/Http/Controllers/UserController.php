@@ -2,8 +2,11 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\UpdateRequest;
+use App\Http\Requests\UserRequest;
 use App\Models\User;
 use Exception;
+use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 
@@ -26,8 +29,10 @@ class UserController extends Controller
         }
     }
 
-    public function create(Request $request)
+    public function create(UserRequest $request): JsonResponse
     {
+        $validated = $request->validated();
+
         try {
             DB::beginTransaction();
 
@@ -74,8 +79,9 @@ class UserController extends Controller
         }
     }
 
-    public function updateById(Request $request, $id)
+    public function updateById(UpdateRequest $request, $id)
     {
+        $validated = $request->validated();
         try {
             DB::beginTransaction();
 

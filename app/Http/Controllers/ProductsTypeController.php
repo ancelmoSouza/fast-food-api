@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\ProductTypeRequest;
+use App\Http\Requests\ProductTypesUpdateRequest;
 use App\Models\ProductsType;
 use Exception;
 use Illuminate\Http\Request;
@@ -9,7 +11,7 @@ use Illuminate\Support\Facades\DB;
 
 class ProductsTypeController extends Controller
 {
-    public function create(Request $request)
+    public function create(ProductTypeRequest $request)
     {
         try {
             DB::beginTransaction();
@@ -71,7 +73,7 @@ class ProductsTypeController extends Controller
         }
     }
 
-    public function updateById(Request $request, $id)
+    public function updateById(ProductTypesUpdateRequest $request, $id)
     {
         try {
             DB::beginTransaction();
